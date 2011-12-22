@@ -1,0 +1,19 @@
+<h1>Groups</h1>
+
+<p>
+  <%= link_to "Create new group", new_group_path %>
+</p>
+
+<table>
+  <% @groups.each do |group| %>
+  <tr>
+    <td>
+      <%= group.name %>
+    </td>
+    <td>
+      <%= link_to "edit", edit_group_path(group) %>
+      <%= link_to "delete", group_path(group), :method => :delete, :confirm => "Sure?" %>
+    </td>
+  </tr>
+  <% end %>
+</table>

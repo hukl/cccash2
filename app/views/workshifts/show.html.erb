@@ -1,0 +1,64 @@
+<h1>Workshift Details</h1>
+
+<table>
+  <tr>
+    <td>Angel:</td>
+    <td><%= @workshift.user.login %> (<%= @workshift.user.name %>)</td>
+  </tr>
+  <tr>
+    <td>Money</td>
+    <td><%= nice_price @workshift.money %></td>
+  </tr>
+  <tr>
+    <td>Started:</td>
+    <td><%= @workshift.started_at.timestamp if @workshift.started_at %></td>
+  </tr>
+  <tr>
+    <td>Ended:</td>
+    <td><%= @workshift.ended_at.timestamp if @workshift.ended_at %></td>
+  </tr>
+  <tr>
+    <td>Transactions:</td>
+    <td><%= @workshift.transactions.count %></td>
+  </tr>
+  <tr>
+    <td>State</td>
+    <td><%= @workshift.status %></td>
+  </tr>
+  <% if @workshift.cleared? %>
+  <tr>
+    <td>Cleared:</td>
+    <td>
+      <%= @workshift.cleared_at.timestamp if @workshift.cleared %>
+    </td>
+  </tr>
+  <tr>
+    <td>Cleared by:</td>
+    <td><%= link_to(@workshift.cleared_by.login, user_path(@workshift.cleared_by)) %></td>
+  </tr>
+  <% end %>
+</table>
+
+
+<h1>Transactions</h1>
+
+<p><%= will_paginate @transactions %></p>
+
+<table class="overview">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Workshift</th>
+      <th>Angel</th>
+      <th>Time</th>
+      <th>Valid</th>
+      <th>Tickets</th>
+      <th class="total">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+    <%= render :partial => @transactions %>
+  </tbody>
+</table>
+
+<p><%= will_paginate @transactions %></p>

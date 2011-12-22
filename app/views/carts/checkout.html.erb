@@ -1,0 +1,10 @@
+<div style="font-size: 300%">
+  <h3><%= pluralize @bons.count, 'Belegnummer', 'Belegnummern' %></h3>
+  <ul id="voucher_numbers">
+    <% @bons.each do |bon| %>
+      <li><%= bon.id %></li>
+    <% end %>
+  </ul>
+</div>
+<%= render :partial => 'cart' %>
+<%= wait_for_close_with_button('index') %>

@@ -1,0 +1,49 @@
+<h1>Workshifts#edit</h1>
+<p>Here you can add more tickets to the running workshift. Please make sure twice you <i>add</i> the amount, i.e. if there are 100 Standard tickets already present and and 20 are added you must fill in <b>120</b> down there</p>
+<p><%= error_messages_for :workshift %></p>
+<% form_for @workshift do |f| %>
+  <table>
+    <tr>
+      <td>Cashbox</td>
+      <td><%= @workshift.cashbox.name %></td>
+    </tr>
+    <tr>
+      <td>User</td>
+      <td><%= @workshift.user.login %></td>
+    </tr>
+    <tr>
+      <td>Money</td>
+      <td><%= @workshift.money %></td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <h4>Tickets in Cashbox</h4>
+        <table>
+          <% Ticket.available.each do |ticket| %>
+          <tr>
+            <td><%= ticket.name %></td>
+            <td>
+              <%= hidden_field_tag(
+                    "workshift[workshift_tickets_attributes][][id]",
+                    @workshift.workshift_tickets.find_by_ticket_id(ticket.id).id
+              ) %>
+              <%= text_field_tag(
+                    "workshift[workshift_tickets_attributes][][amount]",
+                    @workshift.workshift_tickets_for(ticket.id)
+              ) %>
+              <%= hidden_field_tag(
+                    "workshift[workshift_tickets_attributes][][ticket_id]",
+                    ticket.id 
+              ) %>
+            </td>
+          </tr>
+          <% end %>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><%= f.submit %></td>
+    </tr>
+  </table>
+<% end %>

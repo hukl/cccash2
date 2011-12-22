@@ -1,0 +1,40 @@
+<div id="ticket_selection">
+  <h1>Tickets</h1>
+  <table id="tickets">
+    <% Ticket.standard.available.each do |ticket| %>
+    <% if ticket.name =~ /(^friends_|frei$)/ then next end %>
+    <tr>
+      <td>
+        <div class="ticket_badge">
+        <%= link_to_remote(
+              ticket.name,
+              :url => add_ticket_to_cart_path(:id => ticket.id), 
+              :method => :put
+        ) %>
+      </div>
+      </td>
+      <td class="price"><%= nice_price ticket.price %></td>
+    </tr>
+    <% end %>
+  </table>
+</div>
+
+<div id="main_special_guest_search">
+
+  <h4>Search</h4>
+  <%= text_field_tag :search_term %>
+  <%= observe_field(
+        :search_term, 
+        :url => search_special_guests_path, 
+        :with => :search_term,
+        :frequency => 1 
+      ) %>
+  <div id="search_results"></div>
+</div>
+
+
+<%= render :partial => 'cart' %>
+
+<div id="open_cashbox">
+    <%= link_to "Open cashbox", open_cashbox_cart_path %>
+</div>

@@ -1,0 +1,21 @@
+<h1>Cancel Transaction: <%= @last_transaction.id %></h1>
+
+<table class="overview">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Workshift</th>
+      <th>Angel</th>
+      <th>Time</th>
+      <th>Valid</th>
+      <th>Tickets</th>
+      <th class="total">Total</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= render :partial => "transactions/transaction", :locals => {:transaction => @last_transaction} %>
+  <tr>
+    <td colspan="7" class="right"><strong>Sum: <%= nice_price @last_transaction.total %></strong></td>
+  </tr>
+  </tbody>
+</table>

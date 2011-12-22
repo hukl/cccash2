@@ -1,0 +1,30 @@
+<div id="workshifts">
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Cashbox</th>
+      <th>Angel</th>
+      <th>Money</th>
+      <th>Status</th>
+			<th>Cleared by</th>
+			<th>Actions</th>
+    </tr>
+    <% @workshifts.each do |workshift| %>
+    <tr class="<%= cycle('even', 'uneven')%>">
+      <td><%= workshift.id %></td>
+      <td><%= workshift.cashbox.name %></td>
+      <td><%= link_to(workshift.user.login, edit_user_path(workshift.user)) %></td>
+      <td class="right"><%= nice_price(workshift.money) %></td>
+      <td><strong><%= workshift.status %></strong></td>
+      <td><strong>
+				<% if workshift.cleared? %>
+				  <%= link_to_user(workshift.cleared_by) %>
+        <% end %>
+			</strong></td>
+			<td>
+      	<%= link_to 'Transactions', workshift_path(workshift) %>
+    	</td>
+		</tr>
+    <% end %>
+  </table>
+</div>
