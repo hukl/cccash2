@@ -1,6 +1,9 @@
-require 'digest/sha1'
-
 class User < ActiveRecord::Base
+  devise :database_authenticatable, :trackable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :login, :email, :name, :admin, :tainted, :password, :password_confirmation
+
   # These are workshifts which have been assigned to the user
   # who will most likely be an angel
   has_many  :workshifts
@@ -16,14 +19,8 @@ class User < ActiveRecord::Base
   validates_uniqueness_of   :login
   validates_length_of       :name,     :maximum => 100
 
-  # HACK HACK HACK -- how to do attr_accessible from here?
-  # prevents a user from submitting a crafted form that bypasses activation
-  # anything else you want your user to change should be added here.
-  attr_accessible :login, :email, :name, :password, :password_confirmation, :admin, :tainted
-
   scope :admins,  where( :admin => true )
   scope :angels,  where( :admin => false )
-
   scope :busy,    joins(:workshifts).where(
     ["workshifts.user_id = users.id AND workshifts.state <> 'cleared'"]
   )
