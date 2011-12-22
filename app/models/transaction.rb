@@ -1,3 +1,6 @@
+$LOAD_PATH.unshift(File.join(Rails.root, "lib"))
+require 'statistics'
+
 class Transaction < ActiveRecord::Base
   include Statistics
 

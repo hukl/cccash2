@@ -1,9 +1,9 @@
 require 'test_helper'
 
 class GroupsControllerTest < ActionController::TestCase
-  
+
   def setup
-    login_as :quentin
+    sign_in :user, users(:quentin)
   end
 
   test "get index" do
@@ -19,7 +19,7 @@ class GroupsControllerTest < ActionController::TestCase
   test "create new group" do
     assert_difference "Group.count", +1 do
       post :create, :group => {
-        :name       => "friends", 
+        :name       => "friends",
       }
     end
 

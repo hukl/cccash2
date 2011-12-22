@@ -2,19 +2,19 @@ require 'test_helper'
 
 class SpecialGuestsControllerTest < ActionController::TestCase
   def setup
-		login_as :quentin
+    sign_in :user, users(:quentin)
 	end
 
   test "get index" do
     get :index
     assert_response :success
   end
-  
+
   test "get new" do
     get :new
     assert_response :success
   end
-  
+
   test "create special guest with regular ticket" do
     assert_difference ["Reservation.count", "Ticket.count"], +1 do
       post :create,
@@ -28,11 +28,11 @@ class SpecialGuestsControllerTest < ActionController::TestCase
         :base_ticket_id => 1
       }
     end
-    
+
     assert_response :redirect
     assert Ticket.last.custom?
   end
-  
+
   test "create special guest with custom ticket" do
     assert_difference ["Reservation.count", "Ticket.count"], +1 do
       post :create,
@@ -47,7 +47,7 @@ class SpecialGuestsControllerTest < ActionController::TestCase
         :price => 40
       }
     end
-    
+
     assert Ticket.last.custom?
     assert_response :redirect
   end
