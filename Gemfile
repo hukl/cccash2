@@ -10,6 +10,7 @@ gem 'aasm'
 gem 'acts_as_list'
 gem 'thin'
 gem 'devise', '~> 2.0.0.rc'
+gem 'will_paginate', '~> 3.0'
 
 # Gems used only for assets and not required
 # in production environments by default.
