@@ -1,5 +1,21 @@
 Cccash2::Application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :sessions => "sessions" }
+
+  resources :users
+  resources :workshifts
+  resources :cashboxes
+  resources :printers
+  resources :groups
+  resources :transactions
+  resources :special_guests
+  resources :tickets do
+    collection do
+      post 'sort'
+    end
+  end
+
+  match "admin"       => "admin#index"
+  match "statistics"  => "statistics#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
