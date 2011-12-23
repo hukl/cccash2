@@ -35,17 +35,17 @@ class ApplicationController < ActionController::Base
         flash[:notice] = "This is not your cashbox"
       end
 
-      current_user.end_workshift
+      # current_user.end_workshift
 
-      logout_keeping_session!
-      respond_to do |format|
-        format.html { redirect_to new_session_path }
-        format.js do
-          render :update do |page|
-            page.redirect_to("/")
-          end
-        end
-      end
+      # #logout_keeping_session!
+      # respond_to do |format|
+      #   format.html { redirect_to new_session_path }
+      #   format.js do
+      #     render :update do |page|
+      #       page.redirect_to("/")
+      #     end
+      #   end
+      # end
     end
   end
 

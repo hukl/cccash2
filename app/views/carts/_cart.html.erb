@@ -14,10 +14,11 @@
       <td class="right"><%= nice_price ticket.price %></td>
       <td>
         <span class="button_delete">
-          <%= link_to_remote(
-                'Delete', 
+          <%= link_to(
+                'Delete',
                 :url => remove_ticket_from_cart_path(:position => index),
-                :method => :delete
+                :method => :delete,
+                :remote => true
               ) %>
         </span>
         <%# if ticket.member and ticket.member.comment %>

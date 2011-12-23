@@ -11,6 +11,7 @@ gem 'acts_as_list'
 gem 'thin'
 gem 'devise', '~> 2.0.0.rc'
 gem 'will_paginate', '~> 3.0'
+gem 'prototype-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -20,7 +21,7 @@ group :assets do
   gem 'uglifier', '>= 1.0.3'
 end
 
-gem 'jquery-rails'
+# gem 'jquery-rails'
 
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'

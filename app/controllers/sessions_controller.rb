@@ -5,7 +5,7 @@ class SessionsController < Devise::SessionsController
     if user.admin?
       '/admin'
     else
-      carts_path
+      cart_path
     end
   end
 end

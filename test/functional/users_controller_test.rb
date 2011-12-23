@@ -6,11 +6,11 @@ class UsersController; def rescue_action(e) raise e end; end
 
 class UsersControllerTest < ActionController::TestCase
 
-  def setup
-    login_as :quentin
-  end
-
   fixtures :users
+
+  def setup
+    sign_in :user, users(:quentin)
+  end
 
   test "get index" do
     get :index

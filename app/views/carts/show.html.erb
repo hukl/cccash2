@@ -6,10 +6,11 @@
     <tr>
       <td>
         <div class="ticket_badge">
-        <%= link_to_remote(
+        <%= link_to(
               ticket.name,
-              :url => add_ticket_to_cart_path(:id => ticket.id), 
-              :method => :put
+              add_ticket_to_cart_path(:id => ticket.id),
+              :method => :put,
+              :remote => true
         ) %>
       </div>
       </td>
@@ -23,11 +24,11 @@
 
   <h4>Search</h4>
   <%= text_field_tag :search_term %>
-  <%= observe_field(
-        :search_term, 
-        :url => search_special_guests_path, 
+  <%# observe_field(
+        :search_term,
+        :url => search_special_guests_path,
         :with => :search_term,
-        :frequency => 1 
+        :frequency => 1
       ) %>
   <div id="search_results"></div>
 </div>

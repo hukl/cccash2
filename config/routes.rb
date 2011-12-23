@@ -7,7 +7,33 @@ Cccash2::Application.routes.draw do
   resources :printers
   resources :groups
   resources :transactions
-  resources :special_guests
+
+  resources :workshifts do
+    member do
+      put   :toggle_activation
+      post  :clear
+      get   :billing
+    end
+  end
+
+  resources :special_guests do
+    collection do
+      get 'search'
+    end
+  end
+
+  resource :cart do
+    member do
+      put     'add_ticket_to'
+      delete  'remove_ticket_from'
+      get     'checkout'
+      post    'wait_for_cashbox'
+      get     'cancel_most_recent'
+      post    'confirm_cancel'
+      get     'open_cashbox'
+    end
+  end
+
   resources :tickets do
     collection do
       post 'sort'
@@ -16,6 +42,9 @@ Cccash2::Application.routes.draw do
 
   match "admin"       => "admin#index"
   match "statistics"  => "statistics#index"
+  match "tasks"       => "tasks#index"
+
+  root :to => 'users#sign_in'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
