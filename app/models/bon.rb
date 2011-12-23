@@ -13,12 +13,13 @@ class Bon < ActiveRecord::Base
     @printable ||= generate
   end
 
-  private
+
   def print!
     Rails.logger.debug { ">> printing bon:\n#{self}" }
     transaction.workshift.cashbox.printer.print self
   end
 
+  private
   def delimiter
     "\n"
   end
@@ -48,8 +49,8 @@ class Bon < ActiveRecord::Base
       "USt-ID: DE203286729".center(Printer::BON_WIDTH),
       (Time.now.strftime('%d. %b %Y - %H:%M ') + transaction.workshift.cashbox.name).center(Printer::BON_WIDTH),
       ("Belegnummer: #{id}").center(Printer::BON_WIDTH)
-      
-      
+
+
     ]).flatten.compact.join(delimiter) +
     Printer::END_OF_BON
   end
@@ -57,7 +58,7 @@ class Bon < ActiveRecord::Base
   def transcode_billing_address address
     return if address.blank?
     address_lines = address.split(/\r\n/).collect {|l| "  " + l.convert_umlauts[0...Printer::BON_WIDTH-2]}
-    
+
     (
       [ "Leistungsempfaenger:" ] +
       address_lines

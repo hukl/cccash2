@@ -60,6 +60,8 @@ class CartsController < ApplicationController
         end
       end
     rescue => e
+      puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+      puts e.message
       flash[:notice] = "( #{e.class} ) - #{e.message}\n" \
                        "Last Transaction will be canceled"
       redirect_to cart_path
@@ -83,7 +85,9 @@ class CartsController < ApplicationController
   end
 
   def confirm_cancel
-    if User.authenticate(params[:login], params[:password]).try(:admin?)
+    supervisor = User.where(:login => params[:login]).first
+
+    if supervisor && supervisor.valid_password?(params[:password]) && supervisor.admin?
       @last_transaction = Transaction.find(params[:transaction_id])
       @last_transaction.cancel if @last_transaction
       @cashbox.open_drawer
@@ -130,8 +134,8 @@ class CartsController < ApplicationController
 
     def transaction_errors
       errors = []
-      @transaction.errors.each_error do |field, error|
-        errors << error.message
+      @transaction.errors.each do |field, error|
+        errors << error
       end
       errors.join(",")
     end

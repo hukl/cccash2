@@ -1,4 +1,7 @@
 class CashboxesController < ApplicationController
+
+  before_filter :authenticate_user!
+
   def index
   end
 
@@ -8,7 +11,7 @@ class CashboxesController < ApplicationController
 
   def create
     @cashbox = Cashbox.new params[:cashbox]
-    
+
     if @cashbox.save
       redirect_to admin_path
     else
@@ -25,7 +28,7 @@ class CashboxesController < ApplicationController
 
   def update
     @cashbox = Cashbox.find(params[:id])
-    
+
     if @cashbox.update_attributes(params[:cashbox])
       redirect_to admin_path
     else
@@ -35,9 +38,9 @@ class CashboxesController < ApplicationController
 
   def destroy
     cashbox = Cashbox.find(params[:id])
-    
+
     cashbox.destroy if cashbox
-    
+
     redirect_to admin_path
   end
 

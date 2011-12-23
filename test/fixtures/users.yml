@@ -3,7 +3,7 @@ quentin:
   id:                        1
   login:                     quentin
   email:                     quentin@example.com
-  encrypted_password:          f20a7704181a2a64ebff19ac8dd8891f77344478 # 'monkey'
+  encrypted_password:        "$2a$10$ydG/F6/62LpGIZH8klXrneekoh.yPLD.lLz6iQ3HyQh65vbaOQ5gm" # 'monkey'
   created_at:                <%= 5.days.ago.to_s :db  %>
   admin:                     true
 
@@ -11,21 +11,21 @@ aaron:
   id:                        2
   login:                     aaron
   email:                     aaron@example.com
-  encrypted_password:          a8b2cafd5ec2020bfed72872687f475082020e36 # 'monkey'
+  encrypted_password:        "$2a$10$ydG/F6/62LpGIZH8klXrneekoh.yPLD.lLz6iQ3HyQh65vbaOQ5gm" # 'monkey'
   created_at:                <%= 1.days.ago.to_s :db %>
 
 yesper:
   id:                        3
   login:                     yesper
   email:                     yesper@example.com
-  encrypted_password:          a8b2cafd5ec2020bfed72872687f475082020e36 # 'monkey'
+  encrypted_password:        "$2a$10$ydG/F6/62LpGIZH8klXrneekoh.yPLD.lLz6iQ3HyQh65vbaOQ5gm" # 'monkey'
   created_at:                <%= 1.days.ago.to_s :db %>
 
 melchior:
   id:                        4
   login:                     melchior
   email:                     melchior@example.com
-  encrypted_password:          a8b2cafd5ec2020bfed72872687f475082020e36 # 'monkey'
+  encrypted_password:        "$2a$10$ydG/F6/62LpGIZH8klXrneekoh.yPLD.lLz6iQ3HyQh65vbaOQ5gm" # 'monkey'
   created_at:                <%= 1.days.ago.to_s :db %>
 
 old_password_holder:
@@ -39,5 +39,5 @@ no_workshift_dude:
   id:                        6
   login:                     nwsd
   email:                     nwsd@example.com
-  encrypted_password:          a8b2cafd5ec2020bfed72872687f475082020e36 # 'monkey'
+  encrypted_password:        "$2a$10$ydG/F6/62LpGIZH8klXrneekoh.yPLD.lLz6iQ3HyQh65vbaOQ5gm" # 'monkey'
   created_at:                <%= 1.days.ago.to_s :db %>

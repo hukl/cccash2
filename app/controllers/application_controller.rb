@@ -9,6 +9,8 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   # filter_parameter_logging :password
 
+  before_filter :admin_status_required
+
   def admin_status_required
     if current_user && !current_user.admin?
       render :nothing => true, :status => 401

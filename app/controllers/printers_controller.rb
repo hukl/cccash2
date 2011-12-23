@@ -1,4 +1,7 @@
 class PrintersController < ApplicationController
+
+  before_filter :authenticate_user!
+
   def index
   end
 
@@ -8,7 +11,7 @@ class PrintersController < ApplicationController
 
   def create
     @printer = Printer.new params[:printer]
-    
+
     if @printer.save
       redirect_to admin_path
     else
@@ -25,7 +28,7 @@ class PrintersController < ApplicationController
 
   def update
     @printer = Printer.find(params[:id])
-    
+
     if @printer.update_attributes(params[:printer])
       redirect_to admin_path
     else
@@ -35,9 +38,9 @@ class PrintersController < ApplicationController
 
   def destroy
     printer = Printer.find(params[:id])
-    
+
     printer.destroy if printer
-    
+
     redirect_to admin_path
   end
 

@@ -16,3 +16,12 @@ end
 class ActionController::TestCase
   include Devise::TestHelpers
 end
+
+class Cashbox
+  def cashbox_response_for( url, timeout=5)
+    case url
+    when "/open"
+      "open"
+    end
+  end
+end
