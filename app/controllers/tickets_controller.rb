@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
   def index
-    @tickets = Ticket.all
+    @base_tickets   = Ticket.standard.all
+    @custom_tickets = Ticket.custom.all
   end
 
   def new
@@ -9,7 +10,7 @@ class TicketsController < ApplicationController
 
   def create
     @ticket = Ticket.new params[:ticket]
-    
+
     if @ticket.save
       redirect_to tickets_path
     else

@@ -25,7 +25,7 @@
     </tr>
   </thead>
   <tbody id="tickets">
-    <% @tickets.each do |ticket| %>
+    <% @base_tickets.each do |ticket| %>
     <tr id="ticket_<%= ticket.id %>" class="<%= cycle('even', 'uneven') %>">
       <td>
         <%= ticket.name %>

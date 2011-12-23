@@ -1,8 +1,8 @@
 <h1>Add new Special Guest</h1>
 
-<%# error_messages_for :special_guest %>
+<% error_messages_for @special_guest %>
 
-<% form_for @special_guest do |f| %>
+<%= form_for @special_guest do |f| %>
   <table>
     <tr>
       <td>Forename</td>

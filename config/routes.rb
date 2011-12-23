@@ -44,7 +44,7 @@ Cccash2::Application.routes.draw do
   match "statistics"  => "statistics#index"
   match "tasks"       => "tasks#index"
 
-  root :to => 'users#sign_in'
+  root :to => 'admin#index'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
