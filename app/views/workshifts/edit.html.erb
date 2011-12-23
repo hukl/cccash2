@@ -1,7 +1,8 @@
 <h1>Workshifts#edit</h1>
 <p>Here you can add more tickets to the running workshift. Please make sure twice you <i>add</i> the amount, i.e. if there are 100 Standard tickets already present and and 20 are added you must fill in <b>120</b> down there</p>
-<p><%= error_messages_for :workshift %></p>
-<% form_for @workshift do |f| %>
+<p><%= error_messages_for @workshift %></p>
+
+<%= form_for @workshift do |f| %>
   <table>
     <tr>
       <td>Cashbox</td>
@@ -33,7 +34,7 @@
               ) %>
               <%= hidden_field_tag(
                     "workshift[workshift_tickets_attributes][][ticket_id]",
-                    ticket.id 
+                    ticket.id
               ) %>
             </td>
           </tr>

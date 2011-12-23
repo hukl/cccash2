@@ -1,5 +1,5 @@
 class WorkshiftTicket < ActiveRecord::Base
-  
+
   belongs_to :workshift
   belongs_to :ticket
 
@@ -12,7 +12,7 @@ class WorkshiftTicket < ActiveRecord::Base
     unless changes && !changes.include?(nil)
       return true
     else
-      errors.add_to_base "Amount is lower than before" if changes[0] > changes[1]
-    end  
-  end 
+      errors.add(:base, "Amount is lower than before") if changes[0] > changes[1]
+    end
+  end
 end

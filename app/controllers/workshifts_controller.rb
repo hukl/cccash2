@@ -25,7 +25,7 @@ class WorkshiftsController < ApplicationController
       :order      => "created_at desc"
     )
   end
-  
+
   def billing
     @workshift = Workshift.find params[:id]
   end
@@ -36,7 +36,7 @@ class WorkshiftsController < ApplicationController
 
   def update
     @workshift = Workshift.find params[:id]
-    
+
     if @workshift.update_attributes( params[:workshift] )
       redirect_to admin_path
     else
@@ -46,15 +46,15 @@ class WorkshiftsController < ApplicationController
 
   def destroy
     workshift = Workshift.find params[:id]
-    
+
     workshift.destroy if workshift
-    
+
     redirect_to admin_path
   end
-  
+
   def toggle_activation
     workshift   = Workshift.find params[:id]
-    
+
     respond_to do |format|
       format.js do
         if workshift.toggle_activation
@@ -69,10 +69,10 @@ class WorkshiftsController < ApplicationController
       end
     end
   end
-  
+
   def clear
     @workshift = Workshift.find params[:id]
-    
+
     @workshift.transaction do
       @workshift.clear!
       @workshift.update_attributes! :cleared_by_id => current_user.id
@@ -80,7 +80,7 @@ class WorkshiftsController < ApplicationController
         @workshift.user.update_attributes! :tainted => true;
       end
     end
-    
+
     redirect_to admin_path
   end
 
