@@ -7,7 +7,7 @@
         <th>Name</th>
         <th>UID</th>
         <th>Group</th>
-	<th>Checked in?</th>
+	      <th>Checked in?</th>
         <th>Add to cart</th>
         <th>Upgrade</th>
       </tr>
@@ -21,30 +21,31 @@
         <td><%= special_guest.uid %></td>
         <td><%= special_guest.group.name %></td>
         <td>
-	  <% if !special_guest.checked_in %>
+	        <% if !special_guest.checked_in %>
            ✔
           <% else %>
            ✘
           <% end %>
-	</td>
-	<td>
+	      </td>
+	    <td>
           <table class="special_guest_tickets">
           <% special_guest.available_tickets.each do |ticket| %>
           <tr>
             <td>
-              <%= link_to_remote(
+              <%= link_to(
                     ticket.name,
-                    :url => add_ticket_to_cart_path(
+                    add_ticket_to_cart_path(
                       :id => ticket.id,
                       :special_guest_id => special_guest.id
-                    ), 
-                    :method => :put
+                    ),
+                    :method => :put,
+                    :remote => true
                   ) %>
             </td>
             <td><%= nice_price ticket.price %></td>
           </tr>
           <% end %>
-          
+
           <% special_guest.bought_tickets.each do |ticket| %>
             <tr>
               <td colspan="3" class="strike">

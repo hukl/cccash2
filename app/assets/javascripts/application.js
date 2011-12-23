@@ -9,4 +9,7 @@
 //= require effects
 //= require dragdrop
 //= require controls
+//= require jquery
 //= require_tree .
+
+$.noConflict();

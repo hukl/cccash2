@@ -1,7 +1,17 @@
 class SpecialGuest < ActiveRecord::Base
 
+  include Tire::Model::Search
+  include Tire::Model::Callbacks
+
+  mapping do
+    indexes :id,        :type => 'string',  :index    => :not_analyzed
+    indexes :forename,  :type => 'string',  :analyzer => 'snowball'
+    indexes :name,      :type => 'string',  :analyzer => 'snowball'
+    indexes :uid,       :type => 'string',  :analyzer => 'keyword', :boost => 100
+  end
+
   has_many    :reservations
-  has_many    :tickets,     :through => :reservations
+  has_many    :tickets,       :through => :reservations
   has_many    :transactions
   belongs_to  :group
 
@@ -11,15 +21,6 @@ class SpecialGuest < ActiveRecord::Base
     special_guest.name.blank? and special_guest.forename.blank?
   }
   validates_presence_of     :group
-
-  # # Fulltext SpecialGuest Search Indexes
-
-  # define_index do
-  #   indexes forename
-  #   indexes :name
-  #   indexes :uid
-  # end
-
 
   def assign_ticket options
     base_ticket   = Ticket.find(options[:base_ticket_id])

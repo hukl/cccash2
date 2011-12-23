@@ -45,14 +45,14 @@ class SpecialGuestsController < ApplicationController
 
   def search
     unless params[:search_term].blank?
-      @results = SpecialGuest.search params[:search_term], :star => true, :limit => 10
+      @search_results = SpecialGuest.search params[:search_term]
     else
-      @results = []
+      @search_results = []
     end
 
-    render :update do |page|
-      page[:search_results].replace :partial => 'search_results'
-    end
+    @results = SpecialGuest.find( @search_results.to_a.map(&:id) )
+
+    render :partial => 'search_results'
   end
 
 end
