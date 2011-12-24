@@ -21,7 +21,7 @@
         <td><%= special_guest.uid %></td>
         <td><%= special_guest.group.name %></td>
         <td>
-	        <% if !special_guest.checked_in %>
+	        <% if special_guest.checked_in %>
            ✔
           <% else %>
            ✘
@@ -56,13 +56,13 @@
           <% end %>
           </table>
          <td>
-	<% if special_guest.reservations[0].ticket.presale then %>
-	<%= link_to special_guest.reservations[0].ticket.name,
-                        :controller => :special_guests,
-                        :action => :show,
-                        :id => special_guest.id
-            %>
-	<% end %>
+        	<% if special_guest.reservations[0].ticket.presale then %>
+        	<%= link_to special_guest.reservations[0].ticket.name,
+                                :controller => :special_guests,
+                                :action => :show,
+                                :id => special_guest.id
+                    %>
+        	<% end %>
         </td>
        </td>
       </tr>

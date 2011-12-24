@@ -19,6 +19,7 @@ Cccash2::Application.routes.draw do
   resources :special_guests do
     collection do
       get 'search'
+      get 'admin_search'
     end
   end
 

@@ -35,12 +35,23 @@ class SpecialGuestsController < ApplicationController
   end
 
   def edit
+    @special_guest = SpecialGuest.find(params[:id])
   end
 
   def update
+    @special_guest = SpecialGuest.find(params[:id])
+
+    if @special_guest.update_attributes( params[:special_guest] )
+      redirect_to special_guests_path
+    else
+      render :edit
+    end
   end
 
   def destroy
+    special_guest = SpecialGuest.find(params[:id])
+    special_guest.destroy unless special_guest.nil?
+    redirect_to special_guests_path
   end
 
   def search
@@ -53,6 +64,18 @@ class SpecialGuestsController < ApplicationController
     @results = SpecialGuest.find( @search_results.to_a.map(&:id) )
 
     render :partial => 'search_results'
+  end
+
+  def admin_search
+    unless params[:search_term].blank?
+      @search_results = SpecialGuest.search params[:search_term]
+    else
+      @search_results = SpecialGuest.paginate :page => params[:page]
+    end
+
+    @special_guests = SpecialGuest.find( @search_results.to_a.map(&:id) )
+
+    render :partial => @special_guests
   end
 
 end

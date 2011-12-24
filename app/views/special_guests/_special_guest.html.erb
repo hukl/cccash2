@@ -1,0 +1,20 @@
+<tr class="<%= cycle("uneven", "even") %>">
+  <td><%= special_guest.group.name %></td>
+  <td><%= special_guest.forename %></td>
+  <td><%= special_guest.name %></td>
+  <td><%= special_guest.uid %></td>
+  <td>
+    <table>
+    <% special_guest.reservations.each do |reservation| %>
+    <tr>
+      <td><%= reservation.ticket.name %></td>
+      <td class="right"><%= nice_price reservation.ticket.price %></td>
+    </tr>
+    <% end %>
+    </table>
+  </td>
+  <td>
+    <%= link_to "edit",   edit_special_guest_path(special_guest) %>
+    <%= link_to "delete", special_guest_path(special_guest), :method => :delete, :confirm => "Are you sure?" %>
+  </td>
+</tr>
