@@ -59,7 +59,16 @@ class SpecialGuest < ActiveRecord::Base
   end
 
   def available_tickets
-    available_tickets = tickets.available - bought_tickets.flatten
+    tickets_for_guest = tickets.available
+    sold_tickets      = bought_tickets
+
+    sold_tickets.each do |ticket|
+      unless tickets_for_guest.index( ticket ).nil?
+        tickets_for_guest.delete_at( tickets_for_guest.index( ticket ) )
+      end
+    end
+
+    tickets_for_guest
   end
 
 end
