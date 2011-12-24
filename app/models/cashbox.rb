@@ -1,3 +1,4 @@
+require 'net/http'
 class Cashbox < ActiveRecord::Base
 
   has_one     :workshift
@@ -29,7 +30,7 @@ class Cashbox < ActiveRecord::Base
     begin
       http = Net::HTTP.new(ip, port)
       http.read_timeout = timeout
-      response, data = http.get( url, nil )
+      response, data = http.get( url )
       return data
     rescue Errno::ECONNREFUSED
       raise NotFound, "Cashbox refused connection: #{url} (request_uri)"
@@ -41,7 +42,7 @@ class Cashbox < ActiveRecord::Base
       if e.to_s =~ /closed\?/
         raise NotFound, "Cashbox not reachable! Daemon or Interface down!"
       else
-        raise "Something went wrong down here. Your guess is as good as mine"
+        raise "Unexpected Error: #{e}"
       end
     end
   end

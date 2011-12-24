@@ -44,6 +44,13 @@ Cccash2::Application.routes.draw do
   match "statistics"  => "statistics#index"
   match "tasks"       => "tasks#index"
 
+
+  if Rails.env != 'production'
+    %w(open status wait_for_close print).each do |command|
+      match "/#{command}" => "mock_cashbox##{command}"
+    end
+  end
+
   root :to => 'admin#index'
 
   # The priority is based upon order of creation:
