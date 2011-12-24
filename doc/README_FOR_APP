@@ -1,2 +1,10 @@
-Use this README file to introduce your application and point to useful places in the API for learning more.
-Run "rake doc:app" to generate API documentation for your models, controllers, helpers, and libraries.
+Todo:
+
+
+check presale ticket workflow
+
+check upgrade ticket workflow
+
+verify printer behavior - when to print how many bons
+
+pretty up views
