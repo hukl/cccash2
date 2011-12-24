@@ -1,3 +1,4 @@
+<% if @bons %>
 <div style="font-size: 300%">
   <h3><%= pluralize @bons.count, 'Belegnummer', 'Belegnummern' %></h3>
   <ul id="voucher_numbers">
@@ -6,5 +7,6 @@
     <% end %>
   </ul>
 </div>
+<% end %>
 <%= render :partial => 'cart' %>
 <%= wait_for_close_with_button('index') %>

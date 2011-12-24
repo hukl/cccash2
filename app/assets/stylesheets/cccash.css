@@ -32,6 +32,10 @@ table.checkouts {
   width: 90%;
 }
 
+.right {
+  test-align: right;
+}
+
 #content {
   margin: 0 auto;
   padding-top: 20px;
@@ -314,7 +318,17 @@ table.overview tbody td {
   padding-bottom: 5px;
   padding-right: 10px;
   padding-left: 10px;
-  height: 70px;
+  height: 20px;
+}
+
+table.overview tbody td tr td {
+  padding: 0px;
+  width: 120px;
+}
+
+table.overview tbody td tr td.right {
+  padding: 0px;
+  width: 40px;
 }
 
 table.overview tbody tr.canceled {

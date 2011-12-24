@@ -43,7 +43,7 @@ class CartsController < ApplicationController
   def checkout
     session[:valid] = false
 
-    begin
+    #begin
       Transaction.transaction do
         @transaction = @cart.create_transaction(:workshift => current_user.workshift)
         if @transaction.errors.empty?
@@ -59,14 +59,14 @@ class CartsController < ApplicationController
           redirect_to cart_path
         end
       end
-    rescue => e
-      puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
-      puts e.message
-      flash[:notice] = "( #{e.class} ) - #{e.message}\n" \
-                       "Last Transaction will be canceled"
-      redirect_to cart_path
-      return
-    end
+    #rescue => e
+    #  puts ">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+    #  puts e.message
+    #  flash[:notice] = "( #{e.class} ) - #{e.message}\n" \
+    #                   "Last Transaction will be canceled"
+    #  redirect_to cart_path
+    #  return
+    #end
   end
 
   def open_cashbox

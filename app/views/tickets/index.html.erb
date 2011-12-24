@@ -47,3 +47,10 @@
     <% end %>
   </tbody>
 </table>
+
+<%= sortable_element "tickets",
+  :url => {:action => "sort"},
+  :complete => visual_effect(:highlight, "ticket_list"),
+  :tag => "tr",
+  :handle => "move"
+%>
