@@ -9,8 +9,7 @@
     <%= stylesheet_link_tag 'cccash' %>
     <%= stylesheet_link_tag "cccash_print", :media => "print" %>
     <%= javascript_include_tag :application %>
-    <script type="text/javascript">
-    </script>
+    <%= csrf_meta_tags %>
   </head>
 
   <body onload="javascript:document.getElementById('search_term').focus();">
