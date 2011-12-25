@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+
   def index
     @admins = User.admins
     @angels = User.angels
@@ -7,7 +8,7 @@ class UsersController < ApplicationController
   def new
     @user = User.new
   end
- 
+
   def create
     @user = User.new(params[:user])
     success = @user && @user.save
@@ -45,13 +46,13 @@ class UsersController < ApplicationController
 
   def destroy
     user = User.find(params[:id])
-    
+
     unless user.destroy
       messages = []
       user.errors.each_error { |field, error| messages << error.message }.join
       flash[:notice] = messages
     end
-    
+
     redirect_to users_path
   end
 
