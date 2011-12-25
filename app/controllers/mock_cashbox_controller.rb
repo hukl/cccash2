@@ -2,7 +2,7 @@
 
 class MockCashboxController < ApplicationController
 
-  skip_before_filter :login_required
+  skip_before_filter :authenticate_user!
 
   def open
     log_debug('öffnet sich')

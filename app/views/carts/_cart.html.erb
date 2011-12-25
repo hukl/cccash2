@@ -16,7 +16,7 @@
         <span class="button_delete">
           <%= link_to(
                 'Delete',
-                :url => remove_ticket_from_cart_path(:position => index),
+                remove_ticket_from_cart_path(:position => index),
                 :method => :delete,
                 :remote => true
               ) %>
