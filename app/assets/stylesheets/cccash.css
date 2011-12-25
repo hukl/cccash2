@@ -94,7 +94,7 @@ table.checkouts {
   font-weight: bold;
 }
 
-#tickets td {
+.tickets td {
   padding-left: 40px;
   padding-right: 5px;
   padding-top: 2px;
