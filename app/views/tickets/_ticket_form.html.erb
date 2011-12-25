@@ -19,6 +19,10 @@
       <td><%= f.check_box :custom %></td>
     </tr>
     <tr>
+      <td>Upgrade Ticket</td>
+      <td><%= f.select :upgrade_ticket_id, upgrade_tickets, :include_blank => true %></td>
+    </tr>
+    <tr>
       <td>Presale?</td>
       <td><%= f.check_box :presale %></td>
     </tr>

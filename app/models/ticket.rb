@@ -9,7 +9,7 @@ class Ticket < ActiveRecord::Base
   validates_presence_of     :name,  :price
   validates_numericality_of :price, :greater_than_or_equal_to => 0
 
-  scope :custom,      where(:custom => true)
+  scope :custom,      where('custom = true OR presale = true')
   scope :standard,    where(:custom => false, :presale => false)
   scope :presale,     where(:presale => true, :custom => false)
   scope :available,   lambda { where([
@@ -17,6 +17,12 @@ class Ticket < ActiveRecord::Base
   ]) }
 
   acts_as_list
+
+  def upgrade_ticket
+    Ticket.find( upgrade_ticket_id )
+  rescue
+    nil
+  end
 
   def to_bon_line
     single_bon_line

@@ -27,43 +27,7 @@
            ✘
           <% end %>
 	      </td>
-	    <td>
-          <table class="special_guest_tickets">
-          <% special_guest.available_tickets.each do |ticket| %>
-          <tr>
-            <td>
-              <%= link_to(
-                    ticket.name,
-                    add_ticket_to_cart_path(
-                      :id => ticket.id,
-                      :special_guest_id => special_guest.id
-                    ),
-                    :method => :put,
-                    :remote => true
-                  ) %>
-            </td>
-            <td><%= nice_price ticket.price %></td>
-          </tr>
-          <% end %>
-
-          <% special_guest.bought_tickets.each do |ticket| %>
-            <tr>
-              <td colspan="3" class="strike">
-                <%= ticket.name %>
-                <%= nice_price ticket.price %>
-              <td>
-            </tr>
-          <% end %>
-          </table>
-         <td>
-        	<% if special_guest.reservations[0].ticket.presale then %>
-        	<%= link_to special_guest.reservations[0].ticket.name,
-                                :controller => :special_guests,
-                                :action => :show,
-                                :id => special_guest.id
-                    %>
-        	<% end %>
-        </td>
+        <%= render :partial => 'special_guests/reservation', :collection => special_guest.reservations %>
        </td>
       </tr>
     <% end %>

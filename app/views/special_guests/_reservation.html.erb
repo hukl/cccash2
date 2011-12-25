@@ -1,0 +1,24 @@
+<td>
+  <%= link_to(
+        reservation.ticket.name,
+        add_ticket_to_cart_path(
+          :id               => reservation.ticket.id,
+          :special_guest_id => reservation.special_guest.id
+        ),
+        :method => :put,
+        :remote => true
+      )  %>
+</td>
+<td>
+  <% if reservation.ticket.upgrade_ticket %>
+    <%= link_to(
+        reservation.ticket.upgrade_ticket.name,
+        add_ticket_to_cart_path(
+          :id               => reservation.ticket.upgrade_ticket.id,
+          :special_guest_id => reservation.special_guest.id
+        ),
+        :method => :put,
+        :remote => true
+      )  %>
+  <% end %>
+</td>
