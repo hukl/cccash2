@@ -1,0 +1,18 @@
+<tr id="ticket_<%= ticket.id %>" class="<%= cycle('even', 'uneven') %>">
+  <td>
+    <%= ticket.name %>
+  </td>
+  <td>
+    <%= ticket.price %>
+  </td>
+  <td>
+    <%= ticket.custom? ? "✔" : "✘" %>
+  </td>
+  <td>
+    <%= ticket.presale? ? "✔" : "✘" %>
+  </td>
+  <td>
+    <%= link_to "edit", edit_ticket_path(ticket) %>
+    <%= link_to "delete", ticket_path(ticket), :method => :delete, :confirm => "Sure?" %>
+  </td>
+</tr>

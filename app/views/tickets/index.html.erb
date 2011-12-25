@@ -1,4 +1,4 @@
-<h1>Tickets</h1>
+<h1>Base Tickets</h1>
 
 <p>
   <%= link_to "Create new ticket type", new_ticket_path %>
@@ -7,44 +7,44 @@
 <table>
   <thead>
     <tr>
-      <th>
-        Name
-      </th>
-      <th>
-        Price
-      </th>
-      <th>
-        Custom?
-      </th>
-      <th>
-        Presale?
-      </th>
-      <th>
-        Actions
-      </th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Custom?</th>
+      <th>Presale?</th>
+      <th>Actions</th>
     </tr>
   </thead>
   <tbody id="tickets">
-    <% @base_tickets.each do |ticket| %>
-    <tr id="ticket_<%= ticket.id %>" class="<%= cycle('even', 'uneven') %>">
-      <td>
-        <%= ticket.name %>
-      </td>
-      <td>
-        <%= ticket.price %>
-      </td>
-      <td>
-        <%= ticket.custom? ? "✔" : "✘" %>
-      </td>
-      <td>
-        <%= ticket.presale? ? "✔" : "✘" %>
-      </td>
-      <td>
-        <%= link_to "edit", edit_ticket_path(ticket) %>
-        <%= link_to "delete", ticket_path(ticket), :method => :delete, :confirm => "Sure?" %>
-      </td>
+    <%= render :partial => @base_tickets %>
+  </tbody>
+</table>
+
+<%= sortable_element "tickets",
+  :url => {:action => "sort"},
+  :complete => visual_effect(:highlight, "ticket_list"),
+  :tag => "tr",
+  :handle => "move"
+%>
+
+
+<h1>Custom Tickets</h1>
+
+<p>
+  <%= link_to "Create new ticket type", new_ticket_path %>
+</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Custom?</th>
+      <th>Presale?</th>
+      <th>Actions</th>
     </tr>
-    <% end %>
+  </thead>
+  <tbody id="tickets">
+    <%= render :partial => @custom_tickets %>
   </tbody>
 </table>
 
