@@ -50,7 +50,7 @@ module ApplicationHelper
   end
 
   def flash_js_tag
-    if flash[:notice]
+    if flash[:notice] || flash[:alert]
       javascript_tag(show_notice)
     end
   end

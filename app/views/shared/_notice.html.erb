@@ -1,2 +1,6 @@
-<div id="notice" style="display: none"><%= flash[:notice] %></div> 
+<div id="notice" style="display: none">
+  <%= flash[:notice] %>
+  <%= flash[:alert] %>
+</div>
+
 <%= flash_js_tag %>
