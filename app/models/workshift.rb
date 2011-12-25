@@ -18,6 +18,7 @@ class Workshift < ActiveRecord::Base
   validate                    :cashbox_availability,  :on => :create
 
   scope :in_progress, where("state != 'cleared'").order("created_at ASC")
+  scope :cleared,     where("state = 'cleared'").order("created_at ASC")
 
   aasm_initial_state :inactive
 

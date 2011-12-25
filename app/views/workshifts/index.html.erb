@@ -1,2 +1,43 @@
-<h1>Workshifts#index</h1>
-<%= render :partial => 'workshift_list' %>
+<h1>Active Workshifts</h1>
+
+<div id="workshifts">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cashbox</th>
+        <th>Angel</th>
+        <th>Money</th>
+        <th>Status</th>
+        <th>Cleared by</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render :partial => @active_workshifts %>
+    </tbody>
+  </table>
+</div>
+
+
+
+<h1>Cleared Workshifts</h1>
+
+<div id="workshifts">
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Cashbox</th>
+        <th>Angel</th>
+        <th>Money</th>
+        <th>Status</th>
+        <th>Cleared by</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render :partial => @inactive_workshifts %>
+    </tbody>
+  </table>
+</div>

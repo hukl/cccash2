@@ -1,6 +1,7 @@
 class WorkshiftsController < ApplicationController
   def index
-    @workshifts = Workshift.find :all
+    @active_workshifts    = Workshift.in_progress.all
+    @inactive_workshifts  = Workshift.cleared.all
   end
 
   def new

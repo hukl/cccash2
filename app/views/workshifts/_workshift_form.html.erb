@@ -18,7 +18,7 @@
       <td colspan="2">
         <h4>Tickets in Cashbox</h4>
         <table>
-          <% Ticket.available.each do |ticket| %>
+          <% Ticket.standard.each do |ticket| %>
           <tr>
             <td><%= ticket.name %></td>
             <td>
@@ -27,16 +27,6 @@
             </td>
           </tr>
           <% end %>
-          <% Ticket.presale.each do |ticket| %>
-          <tr>
-            <td><%= ticket.name %></td>
-            <td>
-              <%= text_field_tag "workshift[workshift_tickets_attributes][][amount]", 0 %>
-              <%= hidden_field_tag "workshift[workshift_tickets_attributes][][ticket_id]", ticket.id %>
-            </td>
-          </tr>
-          <% end %>
-
         </table>
       </td>
     </tr>

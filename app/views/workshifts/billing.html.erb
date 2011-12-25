@@ -61,7 +61,7 @@
 </table>
 
 <% if @workshift.inactive? %>
-    <% form_tag clear_workshift_path(:id => @workshift.id), :class => 'hideForPrint' do %>
+    <%= form_tag clear_workshift_path(:id => @workshift.id), :class => 'hideForPrint' do %>
       <%= submit_tag 'Ist alles OK', :confirm => 'Really mark as cleared?' %>
       <% if @workshift.user.tainted? %>
         <strong>This user is tainted.</strong>
