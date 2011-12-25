@@ -14,6 +14,7 @@ gem 'will_paginate', '~> 3.0'
 gem 'prototype-rails'
 gem 'tire'
 gem 'yajl-ruby',  :require => 'yajl/json_gem'
+gem 'unicorn'
 
 # Gems used only for assets and not required
 # in production environments by default.
