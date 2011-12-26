@@ -10,7 +10,7 @@ preload_app true
 # Restart any workers that haven't responded in 30 seconds
 timeout 30
 
-pid '/home/cashmaster/tmp/pids/unicorn.pid'
+pid '/home/cashmaster/cccash/tmp/pids/unicorn.pid'
 
 # Listen on a Unix data socket
 listen '/var/run/unicorn.sock', :backlog => 2048
